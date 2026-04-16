@@ -259,7 +259,7 @@
     let count = 0;
     skillsGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => { if (cb.checked) count++; });
     selectedCountEl.textContent = count;
-    exportBtn.textContent = `Export ${count} Selected Skill${count !== 1 ? 's' : ''}`;
+    exportBtn.textContent = `Export ${count} Skill${count !== 1 ? 's' : ''}`;
     exportBtn.disabled = count === 0;
   }
 

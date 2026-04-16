@@ -620,22 +620,16 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   EXPORT FOOTER
+   EXPORT BUTTON (in info-bar)
 ───────────────────────────────────────────── */
-.export-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 0 48px;
-}
-
 .export-btn {
   position: relative;
+  display: flex; align-items: center; gap: 6px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  padding: 14px 44px;
-  border-radius: 14px;
+  padding: 7px 14px;
+  border-radius: 10px;
   border: none;
   background: linear-gradient(135deg, var(--indigo) 0%, var(--violet) 100%);
   color: #fff;
@@ -643,11 +637,13 @@ body {
   overflow: hidden;
   letter-spacing: 0.01em;
   transition: opacity 0.2s, transform 0.15s, box-shadow 0.25s;
+  white-space: nowrap;
   box-shadow:
     0 0 0 1px rgba(99,102,241,0.45),
-    0 4px 28px rgba(99,102,241,0.38),
+    0 4px 18px rgba(99,102,241,0.32),
     0 1px 3px rgba(0,0,0,0.3);
 }
+.export-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 /* Shimmer sweep */
 .export-btn::before {
   content: '';
@@ -662,9 +658,9 @@ body {
 .export-btn:hover:not(:disabled) {
   box-shadow:
     0 0 0 1px rgba(99,102,241,0.65),
-    0 8px 40px rgba(99,102,241,0.48),
+    0 6px 24px rgba(99,102,241,0.42),
     0 1px 3px rgba(0,0,0,0.3);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 .export-btn:active:not(:disabled) { transform: translateY(0); }
 .export-btn:disabled { opacity: 0.3; cursor: not-allowed; }
@@ -845,7 +841,6 @@ body {
   .app-title   { font-size: 1.45rem; }
   .drop-panel  { padding: 56px 28px; }
   .logo-box    { width: 42px; height: 42px; }
-  .export-btn  { padding: 13px 36px; font-size: 0.85rem; }
   .info-bar    { flex-direction: row; }
   .file-name   { max-width: 160px; }
   .ctrl-row    { gap: 6px; }
@@ -874,6 +869,7 @@ body {
   .file-name   { max-width: 130px; font-size: 0.76rem; }
   .count-pill  { font-size: 0.65rem; }
   .reset-btn   { font-size: 0.72rem; padding: 6px 10px; }
+  .export-btn  { font-size: 0.72rem; padding: 7px 10px; }
 
   .ctrl-row    { gap: 5px; margin-bottom: 12px; }
   .ctrl-btn    { padding: 6px 10px; font-size: 0.72rem; }
@@ -887,8 +883,7 @@ body {
   .cb-face svg { width: 10px; height: 10px; }
   .cb-wrap     { width: 18px; height: 18px; }
 
-  .export-btn  { padding: 12px 28px; font-size: 0.82rem; border-radius: 12px; }
-  .export-footer { padding: 18px 0 36px; }
+  .export-btn  { font-size: 0.72rem; padding: 7px 10px; border-radius: 9px; }
 
   .progress-scene { padding: 44px 14px 40px; gap: 20px; }
   .progress-label { font-size: 0.85rem; }
@@ -907,7 +902,7 @@ body {
   .logo-box    { width: 34px; height: 34px; }
   .drop-panel  { padding: 36px 14px; }
   .skills-scroll { max-height: calc(100vh - 250px); }
-  .export-btn  { padding: 11px 22px; font-size: 0.78rem; }
+  .export-btn  { font-size: 0.74rem; padding: 6px 9px; }
   .file-name   { max-width: 100px; }
   .ctrl-btn    { padding: 5px 8px; font-size: 0.68rem; }
   .skill-card  { padding: 10px 11px; }
