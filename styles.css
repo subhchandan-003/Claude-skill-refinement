@@ -133,7 +133,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 52px 20px 128px;
+  padding: 52px 20px 32px;
 }
 
 /* ─────────────────────────────────────────────
@@ -462,11 +462,38 @@ body {
 /* ─────────────────────────────────────────────
    SKILL CARDS
 ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   SKILLS SCROLL WRAPPER
+───────────────────────────────────────────── */
+.skills-scroll {
+  max-height: calc(100vh - 340px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 6px;
+  margin-bottom: 20px;
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99,102,241,0.4) rgba(255,255,255,0.04);
+}
+.skills-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.skills-scroll::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.04);
+  border-radius: 100px;
+}
+.skills-scroll::-webkit-scrollbar-thumb {
+  background: rgba(99,102,241,0.4);
+  border-radius: 100px;
+}
+.skills-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(99,102,241,0.65);
+}
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 11px;
-  margin-bottom: 105px;
 }
 
 .skill-card {
@@ -596,16 +623,10 @@ body {
    EXPORT FOOTER
 ───────────────────────────────────────────── */
 .export-footer {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  z-index: 300;
-  padding: 18px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to top, rgba(3,6,15,1) 50%, rgba(3,6,15,0) 100%);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  padding: 24px 0 48px;
 }
 
 .export-btn {
@@ -792,6 +813,7 @@ body {
 ───────────────────────────────────────────── */
 @media (max-width: 540px) {
   .skills-grid { grid-template-columns: 1fr; }
+  .skills-scroll { max-height: calc(100vh - 300px); }
   .app-title   { font-size: 1.35rem; }
   .drop-panel  { padding: 52px 24px; }
   .progress-scene { padding: 52px 16px 48px; }
