@@ -811,11 +811,104 @@ body {
 /* ─────────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────────── */
-@media (max-width: 540px) {
+
+/* ── Large desktops (1280px+) ── */
+@media (min-width: 1280px) {
+  .container { max-width: 1060px; }
+  .skills-grid { grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); }
+  .skills-scroll { max-height: calc(100vh - 320px); }
+}
+
+/* ── Standard desktops (1024–1279px) ── */
+@media (max-width: 1279px) and (min-width: 1024px) {
+  .container { max-width: 900px; }
+  .skills-grid { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
+  .skills-scroll { max-height: calc(100vh - 330px); }
+}
+
+/* ── Tablets landscape (768–1023px) ── */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .container { max-width: 720px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .skills-scroll { max-height: calc(100vh - 310px); }
+  .app-title   { font-size: 1.6rem; }
+  .drop-panel  { padding: 64px 36px; }
+  .info-bar    { gap: 10px; }
+  .file-name   { max-width: 180px; }
+}
+
+/* ── Tablets portrait (540–767px) ── */
+@media (max-width: 767px) and (min-width: 540px) {
+  .container { max-width: 520px; }
   .skills-grid { grid-template-columns: 1fr; }
-  .skills-scroll { max-height: calc(100vh - 300px); }
-  .app-title   { font-size: 1.35rem; }
-  .drop-panel  { padding: 52px 24px; }
-  .progress-scene { padding: 52px 16px 48px; }
-  .app         { padding-top: 36px; }
+  .skills-scroll { max-height: calc(100vh - 295px); }
+  .app-title   { font-size: 1.45rem; }
+  .drop-panel  { padding: 56px 28px; }
+  .logo-box    { width: 42px; height: 42px; }
+  .export-btn  { padding: 13px 36px; font-size: 0.85rem; }
+  .info-bar    { flex-direction: row; }
+  .file-name   { max-width: 160px; }
+  .ctrl-row    { gap: 6px; }
+  .ctrl-btn    { padding: 6px 11px; font-size: 0.74rem; }
+}
+
+/* ── Mobile (max 539px) ── */
+@media (max-width: 539px) {
+  .app         { padding: 28px 14px 32px; }
+  .app-title   { font-size: 1.2rem; }
+  .app-subtitle { font-size: 0.78rem; }
+  .logo-box    { width: 38px; height: 38px; border-radius: 11px; }
+  .logo-row    { gap: 10px; margin-bottom: 10px; }
+  .app-header  { margin-bottom: 28px; }
+
+  .drop-panel  { padding: 44px 18px; gap: 10px; border-radius: 18px; }
+  .upload-icon-box { width: 72px; height: 72px; border-radius: 18px; }
+  .upload-icon-box svg { width: 32px; height: 32px; }
+  .drop-title  { font-size: 0.95rem; }
+  .drop-sub    { font-size: 0.8rem; }
+
+  .skills-grid { grid-template-columns: 1fr; }
+  .skills-scroll { max-height: calc(100vh - 270px); }
+
+  .info-bar    { padding: 10px 14px; flex-wrap: wrap; gap: 8px; }
+  .file-name   { max-width: 130px; font-size: 0.76rem; }
+  .count-pill  { font-size: 0.65rem; }
+  .reset-btn   { font-size: 0.72rem; padding: 6px 10px; }
+
+  .ctrl-row    { gap: 5px; margin-bottom: 12px; }
+  .ctrl-btn    { padding: 6px 10px; font-size: 0.72rem; }
+  .tally       { font-size: 0.72rem; }
+
+  .skill-card  { padding: 12px 13px; gap: 10px; border-radius: 13px; }
+  .skill-name  { font-size: 0.8rem; }
+  .skill-desc  { font-size: 0.7rem; }
+  .files-badge { font-size: 0.62rem; padding: 2px 6px; }
+  .cb-face     { width: 18px; height: 18px; }
+  .cb-face svg { width: 10px; height: 10px; }
+  .cb-wrap     { width: 18px; height: 18px; }
+
+  .export-btn  { padding: 12px 28px; font-size: 0.82rem; border-radius: 12px; }
+  .export-footer { padding: 18px 0 36px; }
+
+  .progress-scene { padding: 44px 14px 40px; gap: 20px; }
+  .progress-label { font-size: 0.85rem; }
+
+  .success-card { padding: 32px 22px; border-radius: 18px; }
+  .success-title { font-size: 0.95rem; }
+  .success-body  { font-size: 0.76rem; }
+  .success-icon  { width: 58px; height: 58px; }
+  .success-icon svg { width: 24px; height: 24px; }
+  .start-over-btn { padding: 10px 20px; font-size: 0.76rem; }
+}
+
+/* ── Very small phones (max 360px) ── */
+@media (max-width: 360px) {
+  .app-title   { font-size: 1.05rem; }
+  .logo-box    { width: 34px; height: 34px; }
+  .drop-panel  { padding: 36px 14px; }
+  .skills-scroll { max-height: calc(100vh - 250px); }
+  .export-btn  { padding: 11px 22px; font-size: 0.78rem; }
+  .file-name   { max-width: 100px; }
+  .ctrl-btn    { padding: 5px 8px; font-size: 0.68rem; }
+  .skill-card  { padding: 10px 11px; }
 }
