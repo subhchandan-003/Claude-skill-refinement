@@ -138,15 +138,70 @@
   function parseSkillMeta(content) {
     const result = { name: '', description: '' };
     const fm = content.match(/^---\s*\n([\s\S]*?)\n---/);
-    if (!fm) return result;
-    try {
-      const p = jsyaml.load(fm[1]);
-      if (p && typeof p === 'object') {
-        if (p.name)        result.name        = String(p.name);
-        if (p.description) result.description = String(p.description);
-      }
-    } catch (_) {}
+    let bodyStart = 0;
+
+    if (fm) {
+      try {
+        const p = jsyaml.load(fm[1]);
+        if (p && typeof p === 'object') {
+          if (p.name)        result.name        = String(p.name);
+          if (p.description) result.description = String(p.description);
+        }
+      } catch (_) {}
+      bodyStart = fm[0].length;
+    }
+
+    // If frontmatter has no description, read the SKILL.md body
+    if (!result.description) {
+      result.description = extractBodySummary(content.slice(bodyStart));
+    }
+
     return result;
+  }
+
+  /* ── extractBodySummary ── */
+  function extractBodySummary(body) {
+    const lines = body.split('\n');
+    const chunks = [];
+    let inCodeBlock = false;
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      // Track fenced code blocks and skip them
+      if (trimmed.startsWith('```') || trimmed.startsWith('~~~')) {
+        inCodeBlock = !inCodeBlock;
+        continue;
+      }
+      if (inCodeBlock) continue;
+
+      // Skip blank lines, horizontal rules, headings, HTML tags
+      if (!trimmed) continue;
+      if (/^#{1,6}\s/.test(trimmed)) continue;
+      if (/^---+$|^\*\*\*+$|^___+$/.test(trimmed)) continue;
+      if (/^<[^>]+>/.test(trimmed)) continue;
+
+      // Strip common markdown inline syntax
+      const clean = trimmed
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/\*(.*?)\*/g, '$1')
+        .replace(/__(.*?)__/g, '$1')
+        .replace(/_(.*?)_/g, '$1')
+        .replace(/`([^`]+)`/g, '$1')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/^[-*+>]\s+/, '')
+        .replace(/^\d+\.\s+/, '')
+        .replace(/\|/g, ' ')
+        .trim();
+
+      if (clean.length < 15) continue; // skip very short fragments
+
+      chunks.push(clean);
+      if (chunks.join(' ').length >= 180) break;
+    }
+
+    const summary = chunks.join(' ').trim();
+    return summary.length > 200 ? summary.slice(0, 197) + '\u2026' : summary;
   }
 
   /* ── renderSkillCards ── */
@@ -158,9 +213,7 @@
       card.dataset.idx = idx;
       card.style.animationDelay = (idx * 0.04) + 's';
 
-      const desc = skill.description
-        ? (skill.description.length > 100 ? skill.description.slice(0, 100) + '…' : skill.description)
-        : 'No description available';
+      const desc = skill.description || 'No description available.';
 
       const cbId = 'cb-' + idx;
       card.innerHTML = `
